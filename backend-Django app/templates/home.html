@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <title>Appointment Booking</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.20/dist/full.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="bg-base-200 flex flex-col items-center min-h-screen py-10">
+
+  <h1 class="text-3xl font-bold mb-8">Available Appointment Slots</h1>
+
+  {% if messages %}
+    <div class="alert alert-success shadow-lg mb-4 w-1/2">
+      {% for message in messages %}
+        <span>{{ message }}</span>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for slot in slots %}
+      <div class="card w-80 bg-white shadow-xl">
+        <div class="card-body">
+          <h2 class="card-title">
+            {{ slot.title|default:"Slot" }}<br>
+            {{ slot.date }} | {{ slot.start_time }} - {{ slot.end_time }}
+          </h2>
+          <p>Status:
+            {% if slot.is_booked %}
+              <span class="text-red-500 font-semibold">Booked</span>
+            {% else %}
+              <span class="text-green-500 font-semibold">Available</span>
+            {% endif %}
+          </p>
+          {% if not slot.is_booked %}
+            <form method="post" action="{% url 'book_slot' slot.id %}">
+              {% csrf_token %}
+              <button class="btn btn-primary mt-3">Book Slot</button>
+            </form>
+          {% endif %}
+        </div>
+      </div>
+    {% empty %}
+      <p>No slots available.</p>
+    {% endfor %}
+  </d

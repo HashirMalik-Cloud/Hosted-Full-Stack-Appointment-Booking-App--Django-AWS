@@ -1,0 +1,21 @@
+#!/bin/bash
+
+source env/bin/activate
+cd booking_project
+exec gunicorn booking_project.wsgi:application \
+  --bind 0.0.0.0:8000 \
+  --workers 3
+
+
+# Start Gunicorn
+gunicorn booking_project.wsgi:application --bind 0.0.0.0:8000 --workers 3
+
+# Reload Nginx
+sudo systemctl restart nginx
+
+# Collect static files
+python manage.py collectstatic
+
+# Migrate database
+python manage.py makemigrations
+python manage.py migrate

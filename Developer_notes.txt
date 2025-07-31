@@ -1,0 +1,40 @@
+Developer Notes for Appointment Booking App (Cloud-based)
+
+Project Purpose:
+-----------------
+This is a real-world Appointment Booking Web App deployed using AWS services.
+Built with Django, PostgreSQL (RDS), EC2, and Nginx-Gunicorn stack.
+
+Setup Process (High-Level Summary):
+-----------------------------------
+1. Local Setup:
+   - Django app created with two main components:
+     > booking_project/ (main settings, wsgi, urls)
+     > appointments/ (models, views, templates)
+   - Static and media files properly configured.
+
+2. Version Control:
+   - Key files structured into separate folders (src/, infra/, outcomes/, etc.)
+   - Only relevant files committed to GitHub, rest excluded via .gitignore.
+
+3. EC2 Deployment:
+   - Ubuntu server on EC2 used.
+   - Git cloned, virtualenv created, requirements installed.
+   - Gunicorn + Nginx configured for production use.
+   - Static/media files collected and served properly.
+
+4. RDS Database:
+   - PostgreSQL RDS used to store appointment data remotely.
+   - Connected securely to Django via environment variables.
+
+5. Outcome:
+   - A fully functional cloud-deployed appointment booking system.
+   - Shows CRUD on appointments with user-friendly interface.
+   - Recorded demo and screenshots included in /outcomes folder.
+
+Extras:
+-------
+- All credentials managed safely (not pushed).
+- Used environment variables and `.env` file to secure secrets.
+
+Maintained by: Hashir Malik
