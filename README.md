@@ -1,5 +1,7 @@
 ![Architecture Diagram](Architecture%20Diagram.png)
 ![App Screenshot](Screenshots/Dashboard.PNG)
+
+[Watch video Walkthrough](App%20video%20720p.mp4)
 📽️ [Watch Demo Video on YouTube](https://youtu.be/5DbEkGG0Xwg?si=RFh49lIUL4EFsbHM)
 
 # Hosted-Full-Stack-Appointment-Booking-App--Django-AWS
